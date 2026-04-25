@@ -1,9 +1,21 @@
 import os
+import random
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# --- FRASES ÚNICAS PARA EL MUSEO (20 frases proporcionadas por ti) ---
+# --- CONFIGURACIÓN DE RUTAS SEGURAS ---
+# Esto evita que el servidor explote si no encuentra las carpetas
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+FOTOS_PATH = os.path.join(BASE_DIR, 'static', 'fotos')
+PUZZLE_PATH = os.path.join(BASE_DIR, 'static', 'puzzle')
+CIELO_PATH = os.path.join(BASE_DIR, 'static', 'cielo')
+
+# Crear carpetas si no existen para que Render no de error
+for path in [FOTOS_PATH, PUZZLE_PATH, CIELO_PATH]:
+    if not os.path.exists(path):
+        os.makedirs(path)
+
 frases_museo = [
     "Cada foto tuya me recuerda lo increíble que es tener a alguien así en mi vida.",
     "No sé qué brilla más, si la imagen o la persona que está en ella.",
@@ -27,42 +39,38 @@ frases_museo = [
     "Mirarte me recuerda que todo lo que siento por ti es real y cada día más fuerte."
 ]
 
-# Ruta principal
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Ruta del Museo
 @app.route('/museo')
 def museo():
-    fotos_path = os.path.join('static', 'fotos')
-    if not os.path.exists(fotos_path):
-        os.makedirs(fotos_path)
-    
-    # Lee y ordena las fotos para que la asignación de frases sea consistente
-    fotos = [f for f in os.listdir(fotos_path) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-    fotos.sort() # Orden alfabético
+    # Buscamos las fotos de forma segura
+    try:
+        fotos = [f for f in os.listdir(FOTOS_PATH) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+        fotos.sort()
+    except:
+        fotos = []
 
-    # Empareja cada foto con una frase de la lista
     galeria = []
+    if not fotos:
+        # Si no hay fotos, enviamos una lista vacía para que no de error
+        return render_template('museo.html', galeria=[])
+        
     for i in range(len(fotos)):
-        # Si hay más de 20 fotos, las frases se repiten ordenadamente
         frase = frases_museo[i % len(frases_museo)]
         galeria.append({'foto': fotos[i], 'frase': frase})
 
     return render_template('museo.html', galeria=galeria)
 
-# Ruta del Rompecabezas
 @app.route('/rompecabezas')
 def rompecabezas():
     return render_template('rompecabezas.html')
 
-# Ruta de la Carta
 @app.route('/carta')
 def carta():
     return render_template('carta.html')
 
-# Ruta del Cielo
 @app.route('/cielo')
 def cielo():
     return render_template('cielo.html')
