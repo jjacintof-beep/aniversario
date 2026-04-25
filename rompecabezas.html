@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompecabezas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="contenedor">
+        <a href="/" style="color: var(--vino); margin-bottom: 10px;">⬅ Volver</a>
+        <h1 style="font-size: 2.5rem;">Arma nuestro recuerdo</h1>
+        <p>Arrastra las piezas desde el panel hacia el marco central.</p>
+        
+        <div class="juego-rompecabezas">
+            <div class="zona-piezas" id="banco-piezas" ondrop="soltar(event)" ondragover="permitirSoltar(event)"></div>
+            
+            <div class="zona-tablero" id="tablero-armar">
+                <img src="{{ url_for('static', filename='puzzle/mifoto.jpg') }}" class="foto-referencia" alt="Referencia">
+            </div>
+        </div>
+        
+        <p id="mensaje-puzzle" style="display:none; font-size:1.5rem; font-family: 'Dancing Script', cursive; color: var(--vino); margin-top: 20px;">¡Lo lograste, Mi Preciosa! ❤️</p>
+    </div>
+
+    <script>
+        const imageSrc = "{{ url_for('static', filename='puzzle/mifoto.jpg') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

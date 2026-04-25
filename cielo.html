@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Cielo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-cielo">
+    <div class="estrellas"></div>
+    <div class="contenedor-cielo">
+        <a href="/" style="color: white; margin-bottom: 20px; text-decoration: none; border: 1px solid white; padding: 5px 15px; border-radius: 20px;">⬅ Volver</a>
+        
+        <img src="{{ url_for('static', filename='cielo/cielo.jpg') }}" alt="Nuestro Cielo" class="foto-cielo">
+        
+        <p class="texto-cielo">"Así se veía el cielo cuando empezamos a escribir nuestra historia juntos."</p>
+    </div>
+</body>
+</html>

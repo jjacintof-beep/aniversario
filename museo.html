@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Museo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor">
+        <a href="/" style="color: var(--vino); margin-bottom: 20px; display: block;">⬅ Volver</a>
+        <h1 style="font-family: 'Dancing Script', cursive;">Nuestro Museo Virtual</h1>
+        <div class="grid-museo">
+            {% for item in galeria %}
+            <div class="marco-3d">
+                <img src="{{ url_for('static', filename='fotos/' + item.foto) }}" alt="Mi Preciosa">
+                <p class="mensaje-foto">{{ item.frase }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

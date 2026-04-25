@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversario ❤️</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="corazones-bg"></div>
+    <div class="contenedor">
+        <h1>Feliz Aniversario ❤️</h1>
+        <p>Un pequeño espacio dedicado a nosotros.</p>
+        
+        <p style="font-size: 0.9rem; color: var(--vino);">Presiona play para nuestra canción 🎵</p>
+        <audio controls loop style="width: 280px;">
+            <source src="{{ url_for('static', filename='musica.mp3') }}" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+
+        <div class="btn-container">
+            <a href="/museo" class="btn">🖼️ Museo de Fotos</a>
+            <a href="/rompecabezas" class="btn">🧩 Rompecabezas</a>
+            <a href="/carta" class="btn">💌 Carta de Amor</a>
+            <a href="/cielo" class="btn">✨ Nuestro Cielo</a>
+        </div>
+    </div>
+</body>
+</html>

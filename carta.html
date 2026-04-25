@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor">
+        <a href="/" style="color: var(--vino); margin-bottom: 20px;">⬅ Volver</a>
+        <div class="carta-box">
+            <div id="typewriter"></div>
+        </div>
+    </div>
+    <script>
+        const textoCarta = `Mi Preciosa...\n\nQuería que estas palabras lleguen a ti como un abrazo suave en medio del día. Desde que formas parte de mi vida, todo tiene un brillo distinto y una calma que antes no conocía.\n\nTu manera de mirar, de sonreír y de estar, hace que mis días se sientan completos. A tu lado descubrí que la felicidad puede ser sencilla, constante y verdadera.\n\nGracias por existir en mi camino, por regalarme tantos momentos que guardo como tesoros, y por hacer que pensar en el futuro sea algo que me emociona y me llena de ilusión.\n\nAtentamente,\nTu futuro esposo.❤️`;
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
